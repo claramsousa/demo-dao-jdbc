@@ -25,5 +25,11 @@ public class Main {
             System.out.println(vend);
         }
 
+        System.out.println("\n----- TESTE 3: vendedor buscar Todos -----");
+        lista = vendedorDao.buscarTodos();
+        for (Vendedor vend : lista){
+            System.out.println(vend);
+        }
+
     }
 }
