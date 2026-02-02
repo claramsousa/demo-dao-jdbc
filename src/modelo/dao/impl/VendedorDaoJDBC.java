@@ -10,7 +10,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class VendedorDaoJDBC implements VendedorDao {
 
@@ -74,6 +77,7 @@ public class VendedorDaoJDBC implements VendedorDao {
         vend.setNome(rs.getString("Name"));
         vend.setEmail(rs.getString("Email"));
         vend.setDataNascimento(rs.getDate("BirthDate"));
+        vend.setSalarioBase(rs.getDouble("BaseSalary"));
         vend.setDepartamento(dep);
         return vend;
     }
@@ -88,5 +92,45 @@ public class VendedorDaoJDBC implements VendedorDao {
     @Override
     public List<Vendedor> buscarTodos() {
         return List.of();
+    }
+
+    @Override
+    public List<Vendedor> buscarPorDepartamento(Departamento departamento) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try{
+            st = conn.prepareStatement(
+                    "SELECT seller.*,department.Name as DepName "
+                            + "FROM seller INNER JOIN department "
+                            + "ON seller.DepartmentId = department.Id "
+                            + "WHERE DepartmentId = ? "
+                            + "ORDER BY Name");
+
+            st.setInt(1, departamento.getId());
+            rs = st.executeQuery();
+
+            List<Vendedor> lista = new ArrayList<>();
+            Map<Integer, Departamento> map = new HashMap<>();
+
+            while(rs.next()){
+
+                Departamento dep = map.get(rs.getInt("DepartmentId"));
+
+                if (dep == null){
+                    dep = instanciarDepartamento(rs);
+                    map.put(rs.getInt("DepartmentId"), dep);
+                }
+                Vendedor vend = instanciarVendedor(rs, dep);
+                lista.add(vend);
+            }
+            return lista;
+
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        }finally{
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
     }
 }
