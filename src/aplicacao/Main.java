@@ -6,6 +6,7 @@ import modelo.entidades.Departamento;
 import modelo.entidades.Vendedor;
 
 import java.lang.classfile.constantpool.AnnotationConstantValueEntry;
+import java.util.Date;
 import java.util.List;
 
 
@@ -30,6 +31,12 @@ public class Main {
         for (Vendedor vend : lista){
             System.out.println(vend);
         }
+
+        System.out.println("\n----- TESTE 4: inserir vendedor -----");
+        Vendedor vendedor1 = new Vendedor(null, "greg", "greg@gmail.com", new Date(), 4000.00, departamento);
+        vendedorDao.inserir(vendedor1);
+        System.out.println("Inserido! novo Id: " + vendedor1.getId());
+
 
     }
 }

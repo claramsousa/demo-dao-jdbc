@@ -28,6 +28,7 @@ public class Vendedor implements Serializable {
         this.departamento = departamento;
     }
 
+
     public Integer getId() {
         return id;
     }
