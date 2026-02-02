@@ -15,6 +15,10 @@ public class Vendedor implements Serializable {
 
     //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
+
+    public Vendedor() {
+    }
+
     public Vendedor(Integer id, String nome, String email, Date dataNascimento, Double salarioBase, Departamento departamento) {
         this.id = id;
         this.nome = nome;
@@ -62,6 +66,14 @@ public class Vendedor implements Serializable {
 
     public void setSalarioBase(Double salarioBase) {
         this.salarioBase = salarioBase;
+    }
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
 
     @Override

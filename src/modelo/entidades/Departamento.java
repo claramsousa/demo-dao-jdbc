@@ -8,6 +8,9 @@ public class Departamento implements Serializable {
     private Integer Id;
     private String nome;
 
+    public Departamento() {
+    }
+
     public Departamento(Integer id, String nome) {
         Id = id;
         this.nome = nome;
