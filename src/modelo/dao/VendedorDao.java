@@ -1,6 +1,6 @@
 package modelo.dao;
 
-import entidades.Vendedor;
+import modelo.entidades.Vendedor;
 
 import java.util.List;
 

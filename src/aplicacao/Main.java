@@ -1,7 +1,9 @@
 package aplicacao;
 
-import entidades.Departamento;
-import entidades.Vendedor;
+import modelo.dao.DaoFabrica;
+import modelo.dao.VendedorDao;
+import modelo.entidades.Departamento;
+import modelo.entidades.Vendedor;
 
 import java.util.Date;
 
@@ -13,5 +15,8 @@ public class Main {
 
         Vendedor vendedor = new Vendedor(21, "Bob", "bob@gmail.com", new Date(), 3000.00, departamento);
         System.out.println(vendedor);
+
+        VendedorDao vendedorDao = DaoFabrica.criarVendedorDao();
+
     }
 }

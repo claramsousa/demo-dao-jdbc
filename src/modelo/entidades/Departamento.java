@@ -1,4 +1,4 @@
-package entidades;
+package modelo.entidades;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -43,7 +43,7 @@ public class Departamento implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Departamento{" +
+        return "modelo.entidades.Departamento{" +
                 "Id=" + Id +
                 ", nome='" + nome + '\'' +
                 '}';
