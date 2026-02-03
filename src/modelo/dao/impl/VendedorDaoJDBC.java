@@ -20,7 +20,6 @@ public class VendedorDaoJDBC implements VendedorDao {
         this.conn = conn;
     }
 
-    @Override
     public void inserir(Vendedor vendedor) {
         PreparedStatement st = null;
         try {
@@ -62,7 +61,6 @@ public class VendedorDaoJDBC implements VendedorDao {
         }
     }
 
-    @Override
     public void atualizar(Vendedor vendedor) {
         PreparedStatement st = null;
 
@@ -90,12 +88,23 @@ public class VendedorDaoJDBC implements VendedorDao {
 
     }
 
-    @Override
     public void deletarPorId(Integer id) {
+        PreparedStatement st = null;
 
+        try{
+            st = conn.prepareStatement(
+                    "DELETE from seller WHERE Id = ?"
+            );
+            st.setInt(1, id);
+            st.executeUpdate();
+
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }finally{
+         DB.closeStatement(st);
+        }
     }
 
-    @Override
     public Vendedor buscarPorId(Integer id) {
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -127,7 +136,6 @@ public class VendedorDaoJDBC implements VendedorDao {
         }
     }
 
-    @Override
     public List<Vendedor> buscarTodos() {
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -166,7 +174,6 @@ public class VendedorDaoJDBC implements VendedorDao {
 
     }
 
-    @Override
     public List<Vendedor> buscarPorDepartamento(Departamento departamento) {
         PreparedStatement st = null;
         ResultSet rs = null;
