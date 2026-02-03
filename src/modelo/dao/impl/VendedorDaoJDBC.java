@@ -44,7 +44,6 @@ public class VendedorDaoJDBC implements VendedorDao {
                 if (rs.next()) {
                     int id = rs.getInt(1);
                     vendedor.setId(id);
-
                 }
 
                 DB.closeResultSet(rs);

@@ -12,41 +12,41 @@ import java.util.Scanner;
 
 public class Main {
     public static void main (String[] args){
-
         Scanner sc = new Scanner(System.in);
-
 
         VendedorDao vendedorDao = DaoFabrica.criarVendedorDao();
 
-        System.out.println("----- TESTE 1: vendedor buscar por Id -----");
+        System.out.println("\nIniciando Testes em vendedor: ");
+
+        System.out.println("---------- TESTE 1: buscar por Id ----------");
         Vendedor vendedor = vendedorDao.buscarPorId(3);
         System.out.println(vendedor);
 
-        System.out.println("\n----- TESTE 2: vendedor buscar por Departamento -----");
+        System.out.println("\n---------- TESTE 2: buscar por Departamento ----------");
         Departamento departamento = new Departamento(2, null);
         List<Vendedor> lista = vendedorDao.buscarPorDepartamento(departamento);
         for (Vendedor vend : lista){
             System.out.println(vend);
         }
 
-        System.out.println("\n----- TESTE 3: vendedor buscar Todos -----");
+        System.out.println("\n---------- TESTE 3: buscar Todos ----------");
         lista = vendedorDao.buscarTodos();
         for (Vendedor vend : lista){
             System.out.println(vend);
         }
 
-        System.out.println("\n----- TESTE 4: inserir vendedor -----");
+        System.out.println("\n---------- TESTE 4: inserção -----------");
         Vendedor vendedor1 = new Vendedor(null, "greg", "greg@gmail.com", new Date(), 4000.00, departamento);
         vendedorDao.inserir(vendedor1);
         System.out.println("Inserido! novo Id: " + vendedor1.getId());
 
-        System.out.println("\n----- TESTE 5: atualizar vendedor -----");
+        System.out.println("\n---------- TESTE 5: atualizar ----------");
         vendedor = vendedorDao.buscarPorId(1);
         vendedor.setNome("Marta Waine");
         vendedorDao.atualizar(vendedor);
         System.out.println("Atualização completa!");
 
-        System.out.println("\n----- TESTE 6: deletando vendedor -----");
+        System.out.println("\n---------- TESTE 6: deletar ----------");
         System.out.println("Digite um ID para ser deletado");
         int idDel = sc.nextInt();
         vendedorDao.deletarPorId(idDel);
