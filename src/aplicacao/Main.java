@@ -37,6 +37,10 @@ public class Main {
         vendedorDao.inserir(vendedor1);
         System.out.println("Inserido! novo Id: " + vendedor1.getId());
 
-
+        System.out.println("\n----- TESTE 5: atualizar vendedor -----");
+        vendedor = vendedorDao.buscarPorId(1);
+        vendedor.setNome("Marta Waine");
+        vendedorDao.atualizar(vendedor);
+        System.out.println("Atualização completa!");
     }
 }

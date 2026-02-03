@@ -13,9 +13,6 @@ public class Vendedor implements Serializable {
 
     private Departamento departamento;
 
-    //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-
     public Vendedor() {
     }
 
